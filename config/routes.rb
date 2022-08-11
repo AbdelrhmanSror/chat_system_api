@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   get'/applications/:password_reset_token/chats/:chat_number/messages/', to: 'messages#getAll'
   get'/applications/:password_reset_token/chats/:chat_number/messages/:message_number', to: 'messages#get'
   put'/applications/:password_reset_token/chats/:chat_number/messages/:message_number/:message', to: 'messages#update'
-  get'/applications/:password_reset_token/chats/:chat_number/messages/:message_number/search/:message', to: 'messages#search'
-
+  get'/applications/:password_reset_token/chats/:chat_number/messages/search/:query', to: 'messages#search'
 
 
 

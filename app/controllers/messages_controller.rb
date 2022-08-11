@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-    before_action :setupApplicationAndChat, only: [:get, :update,:getAll,:create]
+    before_action :setupApplicationAndChat, only: [:get, :update,:getAll,:create,:search]
     before_action :setupMessage, only: [:get, :update]
 
 
@@ -30,12 +30,19 @@ class MessagesController < ApplicationController
         render :json => { :message => @message.as_json(:except => [:id]) }
     end
 
+    def search
+        unless params[:query].blank?
+          @results = Message.search(@chat.id,params[:query])
+        end
+        render(json: {"messages": @results}, status: :ok)
+      end
+    
     private
     def setupApplicationAndChat
         @application = Application.find_by(password_reset_token:params[:password_reset_token])
         if !@application.present?
              render(json: {message: "invalid token"}, status: :ok)
-         end
+        end
         @chat=@application.chats.find_by(id:params[:chat_number])
         if !@chat.present?
             render(json: {chat: "chat not exist"}, status: :ok)
