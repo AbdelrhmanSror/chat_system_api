@@ -4,23 +4,28 @@ class ApplicationsController < ApplicationController
 
     def getAll
         @applications = Application.all
-        render(json: {body:@applications}, status: :ok)
-    end
+        render :json => {
+            :body => @applications.as_json(:except => [:id])
+          }    end
 
     def get
-        render(json: {body:@application}, status: :ok)
-    end
+        render :json => {
+            :body => @application.as_json(:except => [:id])
+          }    end
 
     def update  
         @application.update(name:params[:name])
-        render(json: {body:@application}, status: :ok)
-        
+        render :json => {
+            :body => @application.as_json(:except => [:id])
+          }        
     end
 
     def create
       @application=Application.new(name:params[:name],chat_count:0)
       @application.save
-      render(json: {body:@application}, status: :ok)
+      render :json => {
+        :body => @application.as_json(:except => [:id])
+      }
     end
 
     private

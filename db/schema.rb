@@ -27,7 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_194720) do
     t.integer "application_id"
     t.integer "chat_number"
     t.index ["application_id"], name: "index_chats_on_application_id"
-    t.index ["chat_number"], name: "index_chats_on_chat_number"
   end
 
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -37,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_194720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
-    t.index ["message_number"], name: "index_messages_on_message_number"
   end
 
 end

@@ -3,6 +3,9 @@ class Message < ApplicationRecord
     # ensures that Elasticsearch indexes are updated when a record is created or updated.
     include Elasticsearch::Model::Callbacks
     belongs_to :Chat ,foreign_key: "chat_id", class_name: "Chat"  
+    validates :message_number, numericality: { greater_than_or_equal_to: 1}, presence:true
+    # unique message_number on the level of the chat
+    validates_uniqueness_of :message_number ,scope: :chat_id
 
     index_name "chat"
     document_type "message"
