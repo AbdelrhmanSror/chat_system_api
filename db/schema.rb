@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_10_194720) do
-  create_table "applications", force: :cascade do |t|
+  create_table "applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "password_reset_token"
     t.datetime "created_at", null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_194720) do
     t.index ["password_reset_token"], name: "index_applications_on_password_reset_token", unique: true
   end
 
-  create_table "chats", force: :cascade do |t|
+  create_table "chats", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "message_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_194720) do
     t.index ["chat_number"], name: "index_chats_on_chat_number"
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "body"
     t.integer "message_number"
     t.integer "chat_id"

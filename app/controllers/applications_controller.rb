@@ -1,8 +1,6 @@
 class ApplicationsController < ApplicationController
 
     before_action :setup_application, only: [:get, :update]
-    after_action  :renderJson , only: [:get, :update]
-
 
     def getAll
         @applications = Application.all
@@ -10,10 +8,12 @@ class ApplicationsController < ApplicationController
     end
 
     def get
+        render(json: {body:@application}, status: :ok)
     end
 
     def update  
         @application.update(name:params[:name])
+        render(json: {body:@application}, status: :ok)
         
     end
 
@@ -21,11 +21,6 @@ class ApplicationsController < ApplicationController
       @application=Application.new(name:params[:name],chat_count:0)
       @application.save
       render(json: {body:@application}, status: :ok)
-    end
-
-    private
-    def renderJson
-        render(json: {body:@application}, status: :ok)
     end
 
     private

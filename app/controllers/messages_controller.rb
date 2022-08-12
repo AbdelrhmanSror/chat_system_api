@@ -16,7 +16,6 @@ class MessagesController < ApplicationController
         @message.save
         @chat.update(message_count:@chat.message_count+1)
         render(json: {"message number": @message.message_number}, status: :ok)
-
     end
 
     def get
@@ -41,11 +40,11 @@ class MessagesController < ApplicationController
     def setupApplicationAndChat
         @application = Application.find_by(password_reset_token:params[:password_reset_token])
         if !@application.present?
-             render(json: {message: "invalid token"}, status: :ok)
+             render(json: {message: "invalid token"}, status: :unauthorized)
         end
         @chat=@application.chats.find_by(id:params[:chat_number])
         if !@chat.present?
-            render(json: {chat: "chat not exist"}, status: :ok)
+            render(json: {chat: "chat not exist"}, status: :bad_request)
         end
     
       

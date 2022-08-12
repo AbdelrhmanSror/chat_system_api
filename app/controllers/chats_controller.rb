@@ -22,7 +22,7 @@ class ChatsController < ApplicationController
                 :chat => @chat.as_json(:except => [:id])
               }
         else
-            render(json: {chat: "chat not exist"}, status: :ok)
+            render(json: {chat: "chat not exist"}, status: :bad_request)
         end
     end
 
@@ -30,7 +30,7 @@ class ChatsController < ApplicationController
     def setupApplication
         @application = Application.find_by(password_reset_token:params[:password_reset_token])
         if !@application.present?
-            render(json: {message: "invalid token"}, status: :ok)
+            render(json: {message: "invalid token"}, status: :unauthorized)
         end
 
     end
