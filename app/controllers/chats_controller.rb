@@ -6,6 +6,7 @@ class ChatsController < ApplicationController
         @chat.application_id=@application.id
         @chat.messages_count=0
         @chat.chat_number=@application.chats.size+1 #it uses counter cache so it won't affect database preformance
+        @chat.save
         render(json: {"chat number": @chat.chat_number}, status: :ok)
       
     end

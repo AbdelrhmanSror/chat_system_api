@@ -1,6 +1,4 @@
 class Chat < ApplicationRecord
-    require 'redis'
-
     has_many:messages ,dependent: :destroy
 
     #Instead of counting the number of responses every time the application are displayed,

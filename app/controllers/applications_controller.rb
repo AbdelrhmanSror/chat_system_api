@@ -1,5 +1,4 @@
 class ApplicationsController < ApplicationController
-    require 'redis'
     before_action :setup_application, only: [:get, :update]
 
     def getAll
@@ -9,7 +8,6 @@ class ApplicationsController < ApplicationController
           }    end
 
     def get
-     
         render :json => {
             :body => @application.as_json(:except => [:id])
           }    end
