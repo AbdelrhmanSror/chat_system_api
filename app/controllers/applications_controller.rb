@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-
+    require 'redis'
     before_action :setup_application, only: [:get, :update]
 
     def getAll
@@ -9,6 +9,7 @@ class ApplicationsController < ApplicationController
           }    end
 
     def get
+     
         render :json => {
             :body => @application.as_json(:except => [:id])
           }    end
@@ -21,7 +22,7 @@ class ApplicationsController < ApplicationController
     end
 
     def create
-      @application=Application.new(name:params[:name],chat_count:0)
+      @application=Application.new(name:params[:name],chats_count:0)
       @application.save
       render :json => {
         :body => @application.as_json(:except => [:id])

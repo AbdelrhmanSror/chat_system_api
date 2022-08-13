@@ -2,10 +2,17 @@ class Message < ApplicationRecord
     include Elasticsearch::Model
     # ensures that Elasticsearch indexes are updated when a record is created or updated.
     include Elasticsearch::Model::Callbacks
-    belongs_to :Chat ,foreign_key: "chat_id", class_name: "Chat"  
+    #Instead of counting the number of responses every time the chats are displayed,
+    #a counter cache keeps a separate message counter which is stored in each chat's database row. 
+    #The counter updates whenever a response is added or removed.
+    #This allows the chat index to render with one database query,
+    #without needing to join the responses in the query. To set it up, 
+    #flip the switch in the belongs_to relation by setting the counter_cache option.
+    belongs_to :Chat ,counter_cache: true ,foreign_key: "chat_id", class_name: "Chat"  
     validates :message_number, numericality: { greater_than_or_equal_to: 1}, presence:true
     # unique message_number on the level of the chat
-    validates_uniqueness_of :message_number ,scope: :chat_id
+    # we already added a Uniqueness constraints in the database for both of message_number and chat_id
+    #validates_uniqueness_of :message_number ,scope: :chat_id
 
     index_name "chat"
     document_type "message"

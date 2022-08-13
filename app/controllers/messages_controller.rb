@@ -13,14 +13,9 @@ class MessagesController < ApplicationController
         @message=Message.new
         @message.body=params[:message]
         @message.chat_id= @chat.id
-        @message.message_number=params[:message_number]
+        @message.message_number=@chat.messages.size+1
         @message.save
-        if @message.save
-            @chat.update(message_count:@chat.message_count+1)
-            render(json: {"message number": @message.message_number}, status: :ok)
-        else
-            render(json: {chat: "invalid message number"}, status: :bad_request)
-        end
+        render(json: {"message number": @message.message_number}, status: :ok)
       
     end
 

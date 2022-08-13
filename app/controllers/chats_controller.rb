@@ -4,15 +4,9 @@ class ChatsController < ApplicationController
     def create 
         @chat=Chat.new
         @chat.application_id=@application.id
-        @chat.message_count=0
-        @chat.chat_number=params[:chat_number]
-        if @chat.save
-            @application.update(chat_count:@application.chat_count+1)
-            render(json: {"chat number": @chat.chat_number}, status: :ok)
-        else
-            render(json: {chat: "invalid chat number"}, status: :bad_request)
-        end
-
+        @chat.messages_count=0
+        @chat.chat_number=@application.chats.size+1 #it uses counter cache so it won't affect database preformance
+        render(json: {"chat number": @chat.chat_number}, status: :ok)
       
     end
 
