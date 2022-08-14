@@ -17,8 +17,6 @@ services:
     restart: always
     environment:
       ELASTICSEARCH_HOST: elasticsearch
-      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
-      xpack.security.enabled : false
       discovery.type :  single-node
     ports:
       - 9200:9200
@@ -29,10 +27,25 @@ services:
       - "3000:3000"
     depends_on:
          - mysql
-         - redis
     build: ./
     image: chat-system-api
     container_name: chat-system-api
+    environment:
+       SERVER_HOST_NAME : chat-system-service
+  
+  chat-client-service:
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+         - chat-system-service
+         - redis
+    build: ./chatMessageCreationClientApi
+    image: chat-client-api
+    container_name: chat-client-api
+
+
+
 
 
 

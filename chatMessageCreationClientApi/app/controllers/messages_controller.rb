@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
                 if locked
                   #critical code
                   #call the main api to get the chat_count
-                  response = Faraday.get("http://localhost:3000/applications/#{params[:password_reset_token]}/chats/#{params[:chat_number]}")
+                  response = Faraday.get("http://chat-system-service:3000/applications/#{params[:password_reset_token]}/chats/#{params[:chat_number]}")
                   value= JSON.parse(response.body)["chat"]["messages_count"]
                   # add value to redis using expiration time of 1.hours
                   @redis.setex(key,1.hour,value.to_i+1)
@@ -53,7 +53,7 @@ class MessagesController < ApplicationController
     end
 
     private def setupRedis
-        @redis = Redis.new(host: 'localhost', port: 6379, db: 1)
+        @redis = Redis.new(host: 'redis', port: 6379, db: 1)
     end
 
 end

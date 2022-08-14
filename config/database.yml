@@ -20,15 +20,15 @@ default: &default
 
 development:
   <<: *default
-  database: chat_app_development
+  database: chat_system_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: chat_app_test
+  database: chat_system_test
 
 production:
   <<: *default
-  database: chat_app_production
+  database: chat_system_production
