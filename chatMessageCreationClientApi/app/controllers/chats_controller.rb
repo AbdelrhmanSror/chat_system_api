@@ -5,8 +5,9 @@ class ChatsController < ApplicationController
 
     def create 
         value=get_chats_number
-        ## Todo message queue
         render(json: {"chat number": value}, status: :ok)
+        ## Todo message queue
+        Faraday.post("http://chat-system-service:3000/applications/#{params[:password_reset_token]}/chats/")
       
     end
 

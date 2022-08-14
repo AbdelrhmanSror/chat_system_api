@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   post'/applications/:password_reset_token/chats/:chat_number/messages/:message', to: 'messages#create'
   
-
-
-
-
   # Defines the root path route ("/")
   # root "articles#index"
 end
