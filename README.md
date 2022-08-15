@@ -13,8 +13,8 @@ Project repository implementing a Chat System API using Ruby On Rails that commn
 
 ## Instructions
 
-- [Chat System API](./README.md)    availble on url:localhost:3000
-- [Chat System Client API](chatMessageCreationClientApi/README.md)   availble on url:localhost:3000
+- [Chat System API](./README.md)    availble on url:  localhost:3000
+- [Chat System Client API](chatMessageCreationClientApi/README.md)   availble on url:  localhost:3001
 
 #### Running as Docker Containers
 intially the project is setuped to run as docker containers.
