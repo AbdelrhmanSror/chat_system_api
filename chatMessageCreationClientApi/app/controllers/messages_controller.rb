@@ -3,9 +3,19 @@ class MessagesController < ApplicationController
 
     def create 
         value=get_messages_number
+        connection = Bunny.new(host: 'rabbitmq')
+        connection.start
+        channel = connection.create_channel
+        channel.prefetch(1)
+        queue=channel.queue("message")
+        exchange = channel.fanout("exchange_message", durable: true)
+        queue.bind(exchange)
+        exchange.publish("#{params[:password_reset_token]},#{params[:chat_number]},#{params[:message]}")
+        channel.close
+        connection.close
         render(json: {"message number": value}, status: :ok)
         ## Todo message queue
-        Faraday.post("http://chat-system-service:3000/applications/#{params[:password_reset_token]}/chats/#{params[:chat_number]}/messages/#{params[:message]}")
+        #Faraday.post("http://chat-system-service:3000/applications/#{params[:password_reset_token]}/chats/#{params[:chat_number]}/messages/#{params[:message]}")
       
     end
 

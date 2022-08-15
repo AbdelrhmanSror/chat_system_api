@@ -14,6 +14,7 @@ gem "puma", "~> 5.0"
 
 gem 'faraday'
 
+gem 'bunny'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
