@@ -1,6 +1,6 @@
 # Chat System
 
-Project repository implementing a Chat System API using Ruby On Rails that commnuication with different kind of services.
+Project repository implementing a Chat System API using Ruby On Rails that commnuicate with different kind of services.
 
 ## Features
 - REST API exploring the main HTTP verbs and features
