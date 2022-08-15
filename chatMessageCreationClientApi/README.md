@@ -10,9 +10,7 @@ Project repository implementing a Chat System Client API using Ruby On Rails tha
 
 ## Instructions
 
-  Note that chat system api should be running for full operation, the client suppose that there are data in chat system,it is not designed to deal with cases of empty data it will drop internal server error if any thing happend,like creating chat with invalid token or creating message with either invalid token or chat_number
-  
-
+-  Note that the chat system API should be running for the entire operation, the client suppose that there are data in the chat system ,it is not designed to deal with cases of empty data it will drop an internal server error if anything happens, like creating a chat with an invalid token or creating a message with either invalid token or chat_number
 
 ## Operations
 
