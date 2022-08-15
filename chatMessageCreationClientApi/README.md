@@ -1,24 +1,39 @@
-# README
+# Chat System Client API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project repository implementing a Chat System Client API using Ruby On Rails that deals with creation of chats and messages using message queue.
 
-Things you may want to cover:
+## Features
+- REST API exploring the main HTTP verbs and features
+- Redis Cache in Memory
+- Docker container.
+- Message Queue : RabbitMQ
 
-* Ruby version
+## Instructions
 
-* System dependencies
+  Note that chat system api should be running for full operation.
 
-* Configuration
 
-* Database creation
+## Operations
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Create chat for a specific application
 
-* Deployment instructions
+`POST` `/applications/{password_reset_token}/chats`
 
-* ...
+
+```json
+{
+    "chat number": 1
+}
+```
+### Create message in a certain chat within application
+
+`POST` `/applications/{password_reset_token}/chats/{chat_number}/messages/{message}`
+
+
+```json
+{
+    "message number": 1
+}
+```
