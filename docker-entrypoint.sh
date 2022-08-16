@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Remove a potentially pre-existing server.pid for Rails.
-rm -f /chat-api/tmp/pids/server.pid
 
 # Wait for services
 /usr/bin/wait-for-it.sh mysql:3306 -t 0

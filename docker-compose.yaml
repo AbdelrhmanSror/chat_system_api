@@ -44,6 +44,7 @@ services:
     depends_on:
          - chat-system-service
          - redis
+         - rabbitmq
     build: ./chatMessageCreationClientApi
     image: chat-client-api
     container_name: chat-client-api
